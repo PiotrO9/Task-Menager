@@ -49,13 +49,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="MongoDB.Driver" Version="2.16.0" />
+	  <MauiXaml Remove="Pages\LoginPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+	  <EmbeddedResource Include="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="NewFolder\" />
+	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 
 </Project>
