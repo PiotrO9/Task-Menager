@@ -7,7 +7,7 @@
              Title="LoginPage">
     <VerticalStackLayout>
         <Label 
-            Text="{Binding SampleText}"
+            Text="123"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
