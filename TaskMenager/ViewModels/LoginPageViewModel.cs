@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using TaskMenager.Engines;
 using TaskMenager.Models;
 
 namespace TaskMenager.ViewModels
@@ -21,7 +22,13 @@ namespace TaskMenager.ViewModels
 
         public LoginPageViewModel()
         {
+            RealmEngine realmEngine = new RealmEngine();
 
+            TaskToDo tmp = new TaskToDo { TaskID = 1, TaskName = "TestName" };
+
+            realmEngine.AddTask(tmp);
+            TaskToDo temp2 = realmEngine.GetTask(tmp);
+            SampleText = temp2.TaskName;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -50,16 +50,18 @@
 
 	<ItemGroup>
 	  <PackageReference Include="MongoDB.Driver" Version="2.16.0" />
+	  <PackageReference Include="Nito.AsyncEx.Context" Version="5.1.2" />
+	  <PackageReference Include="Realm" Version="10.14.0" />
+	  <PackageReference Include="Realm.Fody" Version="10.14.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Engines\" />
 	</ItemGroup>
 
 </Project>
