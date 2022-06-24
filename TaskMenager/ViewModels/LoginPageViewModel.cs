@@ -25,8 +25,10 @@ namespace TaskMenager.ViewModels
             RealmEngine realmEngine = new RealmEngine();
 
             TaskToDo tmp = new TaskToDo { TaskID = 1, TaskName = "TestName" };
+            //realmEngine.AddTask(tmp);
 
-            realmEngine.AddTask(tmp);
+            List<TaskToDo> taskToDos = realmEngine.GetCollection();
+
             TaskToDo temp2 = realmEngine.GetTask(tmp);
             SampleText = temp2.TaskName;
         }

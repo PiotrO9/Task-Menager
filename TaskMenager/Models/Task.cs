@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskMenager.Interfaces;
 
 namespace TaskMenager.Models
 {
@@ -16,6 +17,19 @@ namespace TaskMenager.Models
         public int DurationInSeconds { get; set; }
         public DateTimeOffset AssignmentTime { get; set; }
         public TaskToDo AsignedTo { get; set; }
-        //public Task MyProperty { get; set; }
+
+        public TaskToDo(IRealmEngine realmEngine, string NameOfTask)
+        {
+            TaskID = realmEngine.GetCollectionLength() + 1;
+
+            if(NameOfTask == string.Empty)
+            {
+                throw new Exception("Name of task is empty");
+            }
+            else
+            {
+                TaskName = NameOfTask;
+            }
+        }
     }
 }
