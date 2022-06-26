@@ -17,6 +17,7 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddSingleton<IRealmEngine, RealmEngine>();
+		//builder.Services.AddSingleton<RealmEngine>();
 
 		return builder.Build();
 	}

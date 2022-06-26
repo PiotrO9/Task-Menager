@@ -22,7 +22,7 @@ namespace TaskMenager.Models
         {
             TaskID = realmEngine.GetCollectionLength() + 1;
 
-            if(NameOfTask == string.Empty)
+            if(string.IsNullOrEmpty(NameOfTask))
             {
                 throw new Exception("Name of task is empty");
             }
@@ -30,6 +30,7 @@ namespace TaskMenager.Models
             {
                 TaskName = NameOfTask;
             }
+
         }
     }
 }

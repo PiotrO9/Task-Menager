@@ -6,12 +6,15 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TaskMenager.Engines;
+using TaskMenager.Interfaces;
 using TaskMenager.Models;
 
 namespace TaskMenager.ViewModels
 {
     internal class LoginPageViewModel : INotifyPropertyChanged
     {
+        private IRealmEngine _iRealmEngine { get; set; }
+
         private string _sampleText;
 
         public string SampleText
@@ -20,16 +23,16 @@ namespace TaskMenager.ViewModels
             set { _sampleText = value; OnPropertyChanged(); }
         }
 
-        public LoginPageViewModel()
+        public LoginPageViewModel(IRealmEngine realmEngine)
         {
-            RealmEngine realmEngine = new RealmEngine();
+            _iRealmEngine = realmEngine;
 
-            TaskToDo tmp = new TaskToDo { TaskID = 1, TaskName = "TestName" };
-            //realmEngine.AddTask(tmp);
+            TaskToDo tmp = new TaskToDo(_iRealmEngine, "Cleaning room");
+            //_iRealmEngine.AddTask(tmp);
 
-            List<TaskToDo> taskToDos = realmEngine.GetCollection();
+            List<TaskToDo> taskToDos = _iRealmEngine.GetCollection();
 
-            TaskToDo temp2 = realmEngine.GetTask(tmp);
+            TaskToDo temp2 = _iRealmEngine.GetTask(tmp);
             SampleText = temp2.TaskName;
         }
 
