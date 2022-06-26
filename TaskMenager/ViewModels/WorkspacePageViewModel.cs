@@ -5,41 +5,39 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using TaskMenager.Engines;
 using TaskMenager.Interfaces;
 using TaskMenager.Models;
 
 namespace TaskMenager.ViewModels
 {
-    public class LoginPageViewModel : INotifyPropertyChanged
+    public class WorkspacePageViewModel : INotifyPropertyChanged
     {
         private IRealmEngine _iRealmEngine { get; set; }
 
         private string _sampleText;
-
         public string SampleText
         {
             get { return _sampleText; }
             set { _sampleText = value; OnPropertyChanged(); }
         }
 
-        public LoginPageViewModel(IRealmEngine realmEngine)
+        public WorkspacePageViewModel(IRealmEngine realmEngine)
         {
             _iRealmEngine = realmEngine;
 
-            TaskToDo tmp = new TaskToDo(_iRealmEngine, "Cleaning room");
-            //_iRealmEngine.AddTask(tmp);
-
             List<TaskToDo> taskToDos = _iRealmEngine.GetCollection();
-
-            TaskToDo temp2 = _iRealmEngine.GetTask(tmp);
-            SampleText = temp2.TaskName;
+            TaskToDo taskToDo = taskToDos.Where(w => w.TaskID == 1).FirstOrDefault();
+            SampleText = taskToDo.TaskName;
         }
+
+        #region PropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        #endregion
     }
 }

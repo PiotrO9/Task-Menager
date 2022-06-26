@@ -1,5 +1,7 @@
 ﻿using TaskMenager.Engines;
 using TaskMenager.Interfaces;
+using TaskMenager.Pages;
+using TaskMenager.ViewModels;
 
 namespace TaskMenager;
 
@@ -17,7 +19,11 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddSingleton<IRealmEngine, RealmEngine>();
-		//builder.Services.AddSingleton<RealmEngine>();
+
+		builder.Services.AddSingleton<LoginPageViewModel>();
+		builder.Services.AddSingleton<WorkspacePageViewModel>();
+
+		builder.Services.AddSingleton<WorkspacePage>();
 
 		return builder.Build();
 	}

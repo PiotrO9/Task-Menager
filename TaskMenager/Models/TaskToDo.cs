@@ -8,7 +8,7 @@ using TaskMenager.Interfaces;
 
 namespace TaskMenager.Models
 {
-    internal class TaskToDo : RealmObject
+    public class TaskToDo : RealmObject
     {
         public int? TaskID { get; set; }
         public string TaskName { get; set; }
@@ -30,6 +30,10 @@ namespace TaskMenager.Models
             {
                 TaskName = NameOfTask;
             }
+
+        }
+        public TaskToDo()
+        {
 
         }
     }

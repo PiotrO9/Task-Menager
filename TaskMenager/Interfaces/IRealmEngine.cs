@@ -2,7 +2,7 @@
 
 namespace TaskMenager.Interfaces
 {
-    internal interface IRealmEngine
+    public interface IRealmEngine
     {
         void AddTask(TaskToDo task);
         List<TaskToDo> GetCollection();
