@@ -7,11 +7,42 @@
              Title="WorkspaceComputerPage">
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Grid x:Name="TaskContainer" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="85*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="HeaderGrid" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="TitleLbl" Grid.Column="0"/>
+                <Button x:Name="TaskAddBtn" Grid.Column="1"/>
+            </Grid>
+            <Grid x:Name="TasksGrid" Grid.Row="1">
+                <ScrollView>
+                    
+                </ScrollView>
+            </Grid>
+        </Grid>
+        <Grid x:Name="DetailsGrid" Grid.Column="1">
+            
+        </Grid>
     </Grid>
 </ContentPage>
