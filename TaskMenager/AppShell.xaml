@@ -13,7 +13,7 @@
         <ShellContent.ContentTemplate>
             <OnPlatform x:TypeArguments="DataTemplate">
                 <On Platform="Android" Value="{DataTemplate pages:WorkspacePage}"/>
-                <On Platform="UWP" Value="{DataTemplate pages:LoginPage}"/>
+                <On Platform="UWP" Value="{DataTemplate pages:WorkspaceComputerPage}"/>
             </OnPlatform>
         </ShellContent.ContentTemplate>
     </ShellContent>

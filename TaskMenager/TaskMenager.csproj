@@ -59,7 +59,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\WorkspacePage.xaml.cs">
+	    <DependentUpon>WorkspacePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\WorkspaceComputerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\WorkspacePage.xaml">

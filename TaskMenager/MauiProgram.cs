@@ -22,9 +22,11 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<LoginPageViewModel>();
 		builder.Services.AddSingleton<WorkspacePageViewModel>();
+		builder.Services.AddSingleton<WorkspaceComputerPageViewModel>();
 
 		builder.Services.AddSingleton<WorkspacePage>();
 		builder.Services.AddSingleton<LoginPage>();
+		builder.Services.AddSingleton<WorkspaceComputerPage>();
 
 		return builder.Build();
 	}
