@@ -24,6 +24,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<WorkspacePageViewModel>();
 
 		builder.Services.AddSingleton<WorkspacePage>();
+		builder.Services.AddSingleton<LoginPage>();
 
 		return builder.Build();
 	}

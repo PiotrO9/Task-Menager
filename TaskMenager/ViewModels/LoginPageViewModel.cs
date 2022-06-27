@@ -28,9 +28,7 @@ namespace TaskMenager.ViewModels
             _iRealmEngine = realmEngine;
 
             TaskToDo tmp = new TaskToDo(_iRealmEngine, "Cleaning room");
-            //_iRealmEngine.AddTask(tmp);
-
-            List<TaskToDo> taskToDos = _iRealmEngine.GetCollection();
+            _iRealmEngine.AddTask(tmp);
 
             TaskToDo temp2 = _iRealmEngine.GetTask(tmp);
             SampleText = temp2.TaskName;

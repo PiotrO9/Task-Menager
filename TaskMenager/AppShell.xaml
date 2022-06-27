@@ -9,7 +9,13 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate pages:WorkspacePage}"
-        Route="MainPage" />
+        Route="MainPage">
+        <ShellContent.ContentTemplate>
+            <OnPlatform x:TypeArguments="DataTemplate">
+                <On Platform="Android" Value="{DataTemplate pages:WorkspacePage}"/>
+                <On Platform="UWP" Value="{DataTemplate pages:LoginPage}"/>
+            </OnPlatform>
+        </ShellContent.ContentTemplate>
+    </ShellContent>
 
 </Shell>
