@@ -21,13 +21,28 @@ namespace TaskMenager.ViewModels
             set { _sampleText = value; OnPropertyChanged(); }
         }
 
+        private List<string> _strings;
+
+        public List<string> Strings
+        {
+            get { return _strings; }
+            set { _strings = value; OnPropertyChanged();}
+        }
+
+
         public WorkspaceComputerPageViewModel(IRealmEngine realmEngine)
         {
             _iRealmEngine = realmEngine;
+            //List<TaskToDo> taskToDos = _iRealmEngine.GetCollection();
+            //TaskToDo taskToDo = taskToDos.Where(w => w.TaskID == 1).FirstOrDefault();
+            //SampleText = taskToDo.TaskName;
 
-            List<TaskToDo> taskToDos = _iRealmEngine.GetCollection();
-            TaskToDo taskToDo = taskToDos.Where(w => w.TaskID == 1).FirstOrDefault();
-            SampleText = taskToDo.TaskName;
+            //Strings = new List<string>();
+
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    Strings.Add("test message");
+            //}
         }
 
         #region PropertyChanged

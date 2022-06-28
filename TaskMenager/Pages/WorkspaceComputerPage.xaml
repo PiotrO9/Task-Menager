@@ -45,10 +45,10 @@
             </Grid>
             <Grid x:Name="TasksGrid" Grid.Row="1">
                 <ScrollView>
-                    <CollectionView>
+                    <CollectionView ItemsSource="{Binding Strings}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:TaskToDo">
-                                
+                            <DataTemplate>
+                                <Label Text="{Binding .}" FontSize="24"/>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
