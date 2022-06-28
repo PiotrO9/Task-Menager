@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TaskMenager.ViewModels"
+             xmlns:models="clr-namespace:TaskMenager.Models"
              x:Class="TaskMenager.Pages.WorkspaceComputerPage"
              x:DataType="vm:WorkspaceComputerPageViewModel"
-             Title="WorkspaceComputerPage">
+             Shell.NavBarIsVisible="False">
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
@@ -23,7 +24,7 @@
                 <RowDefinition Height="85*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="HeaderGrid" Grid.Row="0">
+            <Grid x:Name="HeaderGrid" Grid.Row="0" BackgroundColor="Gray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="9*"/>
                     <ColumnDefinition Width="*"/>
@@ -32,12 +33,25 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label x:Name="TitleLbl" Grid.Column="0"/>
-                <Button x:Name="TaskAddBtn" Grid.Column="1"/>
+                <Label x:Name="TitleLbl" Grid.Column="0" Text="Zarządzanie zadaniami" FontSize="40"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       VerticalTextAlignment="Center" 
+                       HorizontalTextAlignment="Center"/>
+                <Button x:Name="TaskAddBtn" Grid.Column="1" Text="+" FontSize="Body" 
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" 
+                        CornerRadius="30"/>
             </Grid>
             <Grid x:Name="TasksGrid" Grid.Row="1">
                 <ScrollView>
-                    
+                    <CollectionView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:TaskToDo">
+                                
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </ScrollView>
             </Grid>
         </Grid>
