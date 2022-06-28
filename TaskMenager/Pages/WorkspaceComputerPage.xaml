@@ -45,10 +45,64 @@
             </Grid>
             <Grid x:Name="TasksGrid" Grid.Row="1">
                 <ScrollView>
-                    <CollectionView ItemsSource="{Binding Strings}">
+                    <CollectionView ItemsSource="{Binding Strings}" VerticalOptions="Center" HorizontalOptions="Center">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Label Text="{Binding .}" FontSize="24"/>
+                            <DataTemplate x:DataType="models:TaskToDo">
+                                <Frame CornerRadius="20" HeightRequest="140" Margin="5">
+                                    <Grid HeightRequest="100">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="9*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <CheckBox Grid.Column="0" IsChecked="{Binding IsTaskFinished}" 
+                                                  VerticalOptions="Center" />
+                                        
+                                        <Grid Grid.Column="1"  HeightRequest="90">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="3*"/>
+                                                <RowDefinition Height="7*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Text="{Binding TaskName}" 
+                                                   VerticalOptions="Center" 
+                                                   HorizontalOptions="Center" 
+                                                   VerticalTextAlignment="Center" 
+                                                   HorizontalTextAlignment="Center"
+                                                   FontSize="30"/>
+                                            
+                                                <Grid Grid.Row="1" HeightRequest="80" Margin="5">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label Grid.Column="0" Text="{Binding TaskDescription}"/>
+                                                        <Grid Grid.Column="1">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+                                                        <Label Grid.Row="0" Text="{Binding AssignmentTime}"/>
+                                                        <Label Grid.Row="1" Text="{Binding  DurationInSeconds}" FontSize="30"/>
+                                                    </Grid>
+                                                    
+                                                </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

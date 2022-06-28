@@ -16,7 +16,7 @@ namespace TaskMenager.Models
         public bool IsTaskFinished { get; set; }
         public int DurationInSeconds { get; set; }
         public DateTimeOffset AssignmentTime { get; set; }
-        public TaskToDo AsignedTo { get; set; }
+        public TaskType TaskType { get; set; }
 
         public TaskToDo(IRealmEngine realmEngine, string NameOfTask)
         {

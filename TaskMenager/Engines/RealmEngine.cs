@@ -25,8 +25,8 @@ namespace TaskMenager.Engines
 
         public RealmEngine()
         {
-            //AsyncContext.Run(async () => await Configurate());
-            AsyncContext.Run(async () => await RestartConfiguration());
+            AsyncContext.Run(async () => await Configurate());
+            //AsyncContext.Run(async () => await RestartConfiguration());
         }
 
         private async Task Configurate()

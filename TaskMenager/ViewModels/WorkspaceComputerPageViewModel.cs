@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskMenager.Interfaces;
 using TaskMenager.Models;
+using static Realms.ThreadSafeReference;
 
 namespace TaskMenager.ViewModels
 {
@@ -21,9 +22,9 @@ namespace TaskMenager.ViewModels
             set { _sampleText = value; OnPropertyChanged(); }
         }
 
-        private List<string> _strings;
+        private System.Collections.Generic.List<TaskToDo> _strings;
 
-        public List<string> Strings
+        public System.Collections.Generic.List<TaskToDo> Strings
         {
             get { return _strings; }
             set { _strings = value; OnPropertyChanged();}
@@ -32,17 +33,21 @@ namespace TaskMenager.ViewModels
 
         public WorkspaceComputerPageViewModel(IRealmEngine realmEngine)
         {
-            _iRealmEngine = realmEngine;
-            //List<TaskToDo> taskToDos = _iRealmEngine.GetCollection();
-            //TaskToDo taskToDo = taskToDos.Where(w => w.TaskID == 1).FirstOrDefault();
-            //SampleText = taskToDo.TaskName;
+        _iRealmEngine = realmEngine;
 
-            //Strings = new List<string>();
+            Strings = new System.Collections.Generic.List<TaskToDo>();
 
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    Strings.Add("test message");
-            //}
+            for (int i = 1; i < 10; i++)
+            {
+                TaskToDo tmp = new TaskToDo();
+                tmp.TaskID = i;
+                tmp.TaskName = "Test task";
+                tmp.TaskDescription = "Oto przykłądowy opis zadnaia jaki może realnie wystąpić";
+                tmp.AssignmentTime = new DateTimeOffset(new DateTime(2115,10,10,21,15,0));
+                tmp.DurationInSeconds = 60;
+                tmp.IsTaskFinished = true;
+                Strings.Add(tmp);
+            }
         }
 
         #region PropertyChanged
