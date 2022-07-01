@@ -58,10 +58,11 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
 
-                                        <CheckBox Grid.Column="0" IsChecked="{Binding IsTaskFinished}" 
+                                        <CheckBox Grid.Column="0" 
+                                                  IsChecked="{Binding IsTaskFinished}" 
                                                   VerticalOptions="Center" />
                                         
-                                        <Grid Grid.Column="1"  HeightRequest="90">
+                                        <Grid Grid.Column="1" HeightRequest="90">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="3*"/>
                                                 <RowDefinition Height="7*"/>
@@ -77,7 +78,7 @@
                                                    HorizontalTextAlignment="Center"
                                                    FontSize="30"/>
                                             
-                                                <Grid Grid.Row="1" HeightRequest="80" Margin="5">
+                                                <Grid Grid.Row="1" HeightRequest="70" Margin="5,10,5,5">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition/>
                                                     </Grid.RowDefinitions>
@@ -86,7 +87,11 @@
                                                         <ColumnDefinition/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Label Grid.Column="0" Text="{Binding TaskDescription}"/>
+                                                <Label Grid.Column="0" 
+                                                       Text="{Binding TaskDescription}" 
+                                                       VerticalOptions="Center" 
+                                                       HorizontalOptions="Center"/>
+                                                    
                                                         <Grid Grid.Column="1">
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition/>
@@ -95,13 +100,23 @@
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition/>
                                                             </Grid.ColumnDefinitions>
-                                                        <Label Grid.Row="0" Text="{Binding AssignmentTime}"/>
-                                                        <Label Grid.Row="1" Text="{Binding  DurationInSeconds}" FontSize="30"/>
+                                                        <Label Grid.Row="0" Text="{Binding AssignmentTime}" 
+                                                               VerticalOptions="Center" 
+                                                               HorizontalOptions="Center"/>
+                                                    <Label Grid.Row="1" Text="{Binding  DurationInSeconds}"
+                                                           FontSize="30" 
+                                                           VerticalOptions="Center" 
+                                                           HorizontalOptions="Center"/>
                                                     </Grid>
                                                     
                                                 </Grid>
                                         </Grid>
                                     </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" x:DataType="vm:WorkspaceComputerPageViewModel"
+                                                              Command="{Binding TaskClickCommand}"
+                                                              NumberOfTapsRequired="1"/>
+                                    </Frame.GestureRecognizers>
                                 </Frame>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -110,7 +125,7 @@
             </Grid>
         </Grid>
         <Grid x:Name="DetailsGrid" Grid.Column="1">
-            
+
         </Grid>
     </Grid>
 </ContentPage>

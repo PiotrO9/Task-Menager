@@ -9,4 +9,9 @@ public partial class WorkspaceComputerPage : ContentPage
 		InitializeComponent();
 		BindingContext = workspaceComputerPageViewModel;
     }
+
+	private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+	{
+
+	}
 }

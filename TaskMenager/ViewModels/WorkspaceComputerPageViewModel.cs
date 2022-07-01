@@ -13,6 +13,8 @@ namespace TaskMenager.ViewModels
 {
     public class WorkspaceComputerPageViewModel : INotifyPropertyChanged
     {
+        #region Properties
+        
         private IRealmEngine _iRealmEngine { get; set; }
 
         private string _sampleText;
@@ -30,6 +32,15 @@ namespace TaskMenager.ViewModels
             set { _strings = value; OnPropertyChanged();}
         }
 
+        #endregion
+
+        #region Commands
+
+        public Command TaskClickCommand { get; }
+
+        #endregion
+
+        #region Constructor
 
         public WorkspaceComputerPageViewModel(IRealmEngine realmEngine)
         {
@@ -48,7 +59,20 @@ namespace TaskMenager.ViewModels
                 tmp.IsTaskFinished = true;
                 Strings.Add(tmp);
             }
+
+            TaskClickCommand = new Command(TaskClickCommandImpl);
         }
+
+        #endregion
+
+        #region Methods
+
+        public void TaskClickCommandImpl()
+        {
+
+        }
+
+        #endregion
 
         #region PropertyChanged
 
