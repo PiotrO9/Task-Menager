@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using TaskMenager.Interfaces;
 using TaskMenager.Models;
-using static Realms.ThreadSafeReference;
 
 namespace TaskMenager.ViewModels
 {
@@ -32,11 +27,17 @@ namespace TaskMenager.ViewModels
             set { _strings = value; OnPropertyChanged();}
         }
 
+        private TaskToDo _selectedTask;
+
+        public TaskToDo SelectedTask
+        {
+            get { return _selectedTask; }
+            set { _selectedTask = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         #region Commands
-
-        public Command TaskClickCommand { get; }
 
         #endregion
 
@@ -60,17 +61,11 @@ namespace TaskMenager.ViewModels
                 Strings.Add(tmp);
             }
 
-            TaskClickCommand = new Command(TaskClickCommandImpl);
         }
 
         #endregion
 
         #region Methods
-
-        public void TaskClickCommandImpl()
-        {
-
-        }
 
         #endregion
 

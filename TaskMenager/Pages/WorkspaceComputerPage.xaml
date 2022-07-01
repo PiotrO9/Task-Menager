@@ -113,8 +113,7 @@
                                         </Grid>
                                     </Grid>
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" x:DataType="vm:WorkspaceComputerPageViewModel"
-                                                              Command="{Binding TaskClickCommand}"
+                                        <TapGestureRecognizer Tapped="TaskFrameTapped"
                                                               NumberOfTapsRequired="1"/>
                                     </Frame.GestureRecognizers>
                                 </Frame>
@@ -127,5 +126,6 @@
         <Grid x:Name="DetailsGrid" Grid.Column="1">
 
         </Grid>
+        <Button Grid.Column="1" Text="123"/>
     </Grid>
 </ContentPage>
