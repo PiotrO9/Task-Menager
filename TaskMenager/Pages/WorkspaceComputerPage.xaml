@@ -7,6 +7,11 @@
              x:Class="TaskMenager.Pages.WorkspaceComputerPage"
              x:DataType="vm:WorkspaceComputerPageViewModel"
              Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <con:AssignmentTimeConverter x:Key="AssignmentTimeConevrter"/>
+    </ContentPage.Resources>
+
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
@@ -135,14 +140,15 @@
                                FontSize="18"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"/>
-                        
+
                         <Label Grid.Column="1" 
                                Grid.Row="0" 
-                               Text="{Binding SelectedTask.AssignmentTime}" 
+                               Text="{Binding SelectedTask.AssignmentTime, Converter={StaticResource AssignmentTimeConevrter}}" 
                                FontSize="20"
                                VerticalOptions="Center" 
-                               HorizontalOptions="Center"/>
-                        
+                               HorizontalOptions="Center">
+                        </Label>
+
                         <Label Grid.Column="1" 
                                Grid.Row="1" 
                                Text="{Binding SelectedTask.DurationInSeconds}" 
