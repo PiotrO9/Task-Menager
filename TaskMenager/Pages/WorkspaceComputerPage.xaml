@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TaskMenager.ViewModels"
              xmlns:models="clr-namespace:TaskMenager.Models"
+             xmlns:con="clr-namespace:TaskMenager.Converters"
              x:Class="TaskMenager.Pages.WorkspaceComputerPage"
              x:DataType="vm:WorkspaceComputerPageViewModel"
              Shell.NavBarIsVisible="False">
@@ -59,58 +60,16 @@
                                         </Grid.RowDefinitions>
 
                                         <CheckBox Grid.Column="0" 
-                                                  IsChecked="{Binding IsTaskFinished}" 
+                                                  IsChecked="{Binding IsTaskFinished}"
                                                   VerticalOptions="Center" />
-                                        
-                                        <Grid Grid.Column="1" HeightRequest="90">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="3*"/>
-                                                <RowDefinition Height="7*"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Row="0" Text="{Binding TaskName}" 
-                                                   VerticalOptions="Center" 
-                                                   HorizontalOptions="Center" 
-                                                   VerticalTextAlignment="Center" 
-                                                   HorizontalTextAlignment="Center"
-                                                   FontSize="30"/>
-                                            
-                                                <Grid Grid.Row="1" HeightRequest="70" Margin="5,10,5,5">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                <Label Grid.Column="0" 
-                                                       Text="{Binding TaskDescription}" 
-                                                       VerticalOptions="Center" 
-                                                       HorizontalOptions="Center"/>
-                                                    
-                                                        <Grid Grid.Column="1">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition/>
-                                                            </Grid.ColumnDefinitions>
-                                                        <Label Grid.Row="0" Text="{Binding AssignmentTime}" 
-                                                               VerticalOptions="Center" 
-                                                               HorizontalOptions="Center"/>
-                                                    <Label Grid.Row="1" Text="{Binding  DurationInSeconds}"
-                                                           FontSize="30" 
-                                                           VerticalOptions="Center" 
-                                                           HorizontalOptions="Center"/>
-                                                    </Grid>
-                                                    
-                                                </Grid>
-                                        </Grid>
+                                        <Label Grid.Column="1" 
+                                               Text="{Binding TaskName}" 
+                                               FontSize="45" 
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="Center" 
+                                               VerticalTextAlignment="Center" 
+                                               HorizontalTextAlignment="Center"/>
                                     </Grid>
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TaskFrameTapped"
@@ -124,8 +83,75 @@
             </Grid>
         </Grid>
         <Grid x:Name="DetailsGrid" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
 
+            <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                <Button Text="ABC" BackgroundColor="LightBlue"/>
+                <Button Text="☑" BackgroundColor="LightBlue"/>
+            </StackLayout>
+            <Frame Grid.Row="1" IsVisible="true">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="7*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" 
+                               Text="{Binding SelectedTask.TaskName}" 
+                               FontSize="30"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+                        <Button Grid.Column="1" Text="←" FontSize="25" VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="50"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0"
+                               Grid.Row="0" 
+                               Grid.RowSpan="2" 
+                               Text="{Binding SelectedTask.TaskDescription}"
+                               FontSize="18"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Grid.Column="1" 
+                               Grid.Row="0" 
+                               Text="{Binding SelectedTask.AssignmentTime}" 
+                               FontSize="20"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Grid.Column="1" 
+                               Grid.Row="1" 
+                               Text="{Binding SelectedTask.DurationInSeconds}" 
+                               FontSize="20"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+                    </Grid>
+                </Grid>
+            </Frame>
         </Grid>
-        <Button Grid.Column="1" Text="123"/>
     </Grid>
 </ContentPage>
