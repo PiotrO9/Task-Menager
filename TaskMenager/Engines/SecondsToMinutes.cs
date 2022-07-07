@@ -10,7 +10,7 @@ namespace TaskMenager.Engines
     {
         public static int SecondsToMinutesCalculation(int AmountOfTime)
         {
-            return AmountOfTime <= 60 ? 0 : AmountOfTime % 60;
+            return AmountOfTime <= 60 ? 0 : AmountOfTime / 60;
         }
     }
 }

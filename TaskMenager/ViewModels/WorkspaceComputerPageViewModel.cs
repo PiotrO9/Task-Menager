@@ -61,6 +61,11 @@ namespace TaskMenager.ViewModels
                 Strings.Add(tmp);
             }
 
+            for (int i = 0; i < 10; i+=2)
+            {
+                Strings[i].DurationInSeconds = 120;
+            }
+
         }
 
         #endregion

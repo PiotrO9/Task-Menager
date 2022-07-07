@@ -10,6 +10,7 @@
 
     <ContentPage.Resources>
         <con:AssignmentTimeConverter x:Key="AssignmentTimeConevrter"/>
+        <con:DurationInSecondsTimeConverter x:Key="DurationInSecondsTimeConverter"/>
     </ContentPage.Resources>
 
     <Grid x:Name="MainGrid">
@@ -151,7 +152,7 @@
 
                         <Label Grid.Column="1" 
                                Grid.Row="1" 
-                               Text="{Binding SelectedTask.DurationInSeconds}" 
+                               Text="{Binding SelectedTask.DurationInSeconds, Converter={StaticResource DurationInSecondsTimeConverter}}" 
                                FontSize="20"
                                VerticalOptions="Center" 
                                HorizontalOptions="Center"/>

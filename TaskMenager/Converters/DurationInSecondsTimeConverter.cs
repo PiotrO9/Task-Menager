@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskMenager.Engines;
 
 namespace TaskMenager.Converters
 {
@@ -28,7 +29,11 @@ namespace TaskMenager.Converters
                 }
                 else
                 {
+                    int CalculateFromSecondsTominutes = SecondsToMinutes.SecondsToMinutesCalculation(temp);
 
+                    return CalculateFromSecondsTominutes == 0 ? 
+                        "Czas na wykonanie zadania" + Environment.NewLine + temp + " sekund" : 
+                        "Czas na wykonanie zadania" + Environment.NewLine + CalculateFromSecondsTominutes + " minut";
                 }
             }
             else
