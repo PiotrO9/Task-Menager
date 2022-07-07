@@ -27,17 +27,6 @@ namespace TaskMenager.Converters
 
             int LengthOfAssignemntTimeInput = temp.Length;
 
-            //if(LengthOfAssignemntTimeInput > 8)
-            //{
-            //    temp = temp.Remove(LengthOfAssignemntTimeInput - 8, 8);
-            //    string[] SplitedString = temp.Split(' ');
-            //    return SplitedString[0] + "&#x0d;&#x0a;" + SplitedString[1];
-            //}
-            //else
-            //{
-            //    return temp;
-            //}
-
             return LengthOfAssignemntTimeInput > 8 ? temp.Remove(LengthOfAssignemntTimeInput - 8, 8).Replace(" ", Environment.NewLine) : temp;
         }
 
