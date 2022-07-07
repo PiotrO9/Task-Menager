@@ -9,7 +9,6 @@ namespace TaskMenager.ViewModels
     public class WorkspaceComputerPageViewModel : INotifyPropertyChanged
     {
         #region Properties
-        
         private IRealmEngine _iRealmEngine { get; set; }
 
         private string _sampleText;
@@ -24,7 +23,7 @@ namespace TaskMenager.ViewModels
         public System.Collections.Generic.List<TaskToDo> Strings
         {
             get { return _strings; }
-            set { _strings = value; OnPropertyChanged();}
+            set { _strings = value; OnPropertyChanged(); }
         }
 
         private TaskToDo _selectedTask;
@@ -35,9 +34,20 @@ namespace TaskMenager.ViewModels
             set { _selectedTask = value; OnPropertyChanged(); }
         }
 
+        private int _heightOfMainCollectionView;
+
+        public int HeightOfMainCollectionView
+        {
+            get { return _heightOfMainCollectionView; }
+            set { _heightOfMainCollectionView = value; OnPropertyChanged(); }
+        }
+
+
         #endregion
 
         #region Commands
+
+        public Command DetailsInformationBackButtonCommand { get; set; }
 
         #endregion
 
@@ -45,8 +55,9 @@ namespace TaskMenager.ViewModels
 
         public WorkspaceComputerPageViewModel(IRealmEngine realmEngine)
         {
-        _iRealmEngine = realmEngine;
+            DetailsInformationBackButtonCommand = new Command(DetailsInformationBackButtonCommandImpl);
 
+            _iRealmEngine = realmEngine;
             Strings = new System.Collections.Generic.List<TaskToDo>();
 
             for (int i = 1; i < 10; i++)
@@ -59,6 +70,7 @@ namespace TaskMenager.ViewModels
                 tmp.DurationInSeconds = 60;
                 tmp.IsTaskFinished = true;
                 Strings.Add(tmp);
+                CalculateMainCollectionViewHeight();
             }
 
             for (int i = 0; i < 10; i+=2)
@@ -71,6 +83,22 @@ namespace TaskMenager.ViewModels
         #endregion
 
         #region Methods
+
+        public void DetailsInformationBackButtonCommandImpl()
+        {
+            SelectedTask = null;
+        }
+
+        public void CalculateMainCollectionViewHeight()
+        {
+            if (Strings.Count == 0)
+            {
+                HeightOfMainCollectionView = 0;
+                return;
+            }
+
+            HeightOfMainCollectionView = Strings.Count * 150;
+        }
 
         #endregion
 

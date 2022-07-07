@@ -51,8 +51,12 @@
                         CornerRadius="30"/>
             </Grid>
             <Grid x:Name="TasksGrid" Grid.Row="1">
-                <ScrollView>
-                    <CollectionView ItemsSource="{Binding Strings}" VerticalOptions="Center" HorizontalOptions="Center">
+                <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+                    <CollectionView x:Name="MainCollectionView" 
+                                    HeightRequest="{Binding HeightOfMainCollectionView}" 
+                                    ItemsSource="{Binding Strings}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:TaskToDo">
                                 <Frame CornerRadius="20" HeightRequest="140" Margin="5">
@@ -122,7 +126,12 @@
                                FontSize="30"
                                VerticalOptions="Center" 
                                HorizontalOptions="Center"/>
-                        <Button Grid.Column="1" Text="←" FontSize="25" VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="50"/>
+                        <Button Grid.Column="1" 
+                                Text="←" FontSize="25" 
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center" 
+                                CornerRadius="50"
+                                Command="{Binding DetailsInformationBackButtonCommand}"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
