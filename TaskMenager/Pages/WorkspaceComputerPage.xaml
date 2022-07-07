@@ -102,8 +102,8 @@
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
-                <Button Text="ABC" BackgroundColor="LightBlue"/>
-                <Button Text="☑" BackgroundColor="LightBlue"/>
+                <Button Text="ABC" BackgroundColor="LightBlue" Command="{Binding SortAlphabeticallyBtnCommand}"/>
+                <Button Text="☑" BackgroundColor="LightBlue" Command="{Binding SortByFinishedBtnCommand}"/> 
             </StackLayout>
             <Frame Grid.Row="1" IsVisible="true">
                 <Grid>

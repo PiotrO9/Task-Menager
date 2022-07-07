@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using TaskMenager.Engines;
 using TaskMenager.Interfaces;
 using TaskMenager.Models;
 
@@ -48,6 +49,8 @@ namespace TaskMenager.ViewModels
         #region Commands
 
         public Command DetailsInformationBackButtonCommand { get; set; }
+        public Command SortAlphabeticallyBtnCommand { get; set; }
+        public Command SortByFinishedBtnCommand { get; set; }
 
         #endregion
 
@@ -56,28 +59,13 @@ namespace TaskMenager.ViewModels
         public WorkspaceComputerPageViewModel(IRealmEngine realmEngine)
         {
             DetailsInformationBackButtonCommand = new Command(DetailsInformationBackButtonCommandImpl);
+            SortAlphabeticallyBtnCommand = new Command(SortAlphabeticallyBtnCommandImpl);
+            SortByFinishedBtnCommand = new Command(SortByFinishedBtnCommandImpl);
 
             _iRealmEngine = realmEngine;
-            Strings = new System.Collections.Generic.List<TaskToDo>();
+            Strings = AddSampleTasks.AddSampleTasksMethod();
 
-            for (int i = 1; i < 10; i++)
-            {
-                TaskToDo tmp = new TaskToDo();
-                tmp.TaskID = i;
-                tmp.TaskName = "Test task";
-                tmp.TaskDescription = "Oto przykłądowy opis zadnaia jaki może realnie wystąpić";
-                tmp.AssignmentTime = new DateTimeOffset(new DateTime(2115,10,10,21,15,0));
-                tmp.DurationInSeconds = 60;
-                tmp.IsTaskFinished = true;
-                Strings.Add(tmp);
-                CalculateMainCollectionViewHeight();
-            }
-
-            for (int i = 0; i < 10; i+=2)
-            {
-                Strings[i].DurationInSeconds = 120;
-            }
-
+            CalculateMainCollectionViewHeight();
         }
 
         #endregion
@@ -98,6 +86,17 @@ namespace TaskMenager.ViewModels
             }
 
             HeightOfMainCollectionView = Strings.Count * 150;
+        }
+
+        public void SortAlphabeticallyBtnCommandImpl()
+        {
+            Strings = Strings.OrderBy(x => x.TaskName).ToList();
+            CalculateMainCollectionViewHeight();
+        }
+        public void SortByFinishedBtnCommandImpl()
+        {
+            Strings = Strings.OrderBy(x => x.IsTaskFinished).Reverse().ToList();
+            CalculateMainCollectionViewHeight();
         }
 
         #endregion
