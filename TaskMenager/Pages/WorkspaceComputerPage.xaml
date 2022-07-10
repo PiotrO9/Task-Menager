@@ -45,10 +45,13 @@
                        HorizontalOptions="Center" 
                        VerticalTextAlignment="Center" 
                        HorizontalTextAlignment="Center"/>
-                <Button x:Name="TaskAddBtn" Grid.Column="1" Text="+" FontSize="Body" 
+                <Button x:Name="TaskAddBtn" Grid.Column="1" 
+                        Text="+" 
+                        FontSize="Body" 
                         VerticalOptions="Center" 
                         HorizontalOptions="Center" 
-                        CornerRadius="30"/>
+                        CornerRadius="30"
+                        Command="{Binding AddNewTaskCommand}"/>
             </Grid>
             <Grid x:Name="TasksGrid" Grid.Row="1">
                 <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">

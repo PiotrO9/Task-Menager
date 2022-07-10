@@ -51,6 +51,7 @@ namespace TaskMenager.ViewModels
         public Command DetailsInformationBackButtonCommand { get; set; }
         public Command SortAlphabeticallyBtnCommand { get; set; }
         public Command SortByFinishedBtnCommand { get; set; }
+        public Command AddNewTaskCommand { get; set; }
 
         #endregion
 
@@ -61,6 +62,7 @@ namespace TaskMenager.ViewModels
             DetailsInformationBackButtonCommand = new Command(DetailsInformationBackButtonCommandImpl);
             SortAlphabeticallyBtnCommand = new Command(SortAlphabeticallyBtnCommandImpl);
             SortByFinishedBtnCommand = new Command(SortByFinishedBtnCommandImpl);
+            AddNewTaskCommand = new Command(AddNewTaskCommandImpl);
 
             _iRealmEngine = realmEngine;
             Strings = AddSampleTasks.AddSampleTasksMethod();
@@ -97,6 +99,10 @@ namespace TaskMenager.ViewModels
         {
             Strings = Strings.OrderBy(x => x.IsTaskFinished).Reverse().ToList();
             CalculateMainCollectionViewHeight();
+        }
+        public async void AddNewTaskCommandImpl()
+        {
+            
         }
 
         #endregion
