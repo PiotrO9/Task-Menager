@@ -4,6 +4,7 @@ using System.Windows.Input;
 using TaskMenager.Engines;
 using TaskMenager.Interfaces;
 using TaskMenager.Models;
+using TaskMenager.Pages;
 
 namespace TaskMenager.ViewModels
 {
@@ -102,7 +103,7 @@ namespace TaskMenager.ViewModels
         }
         public async void AddNewTaskCommandImpl()
         {
-            
+            await Shell.Current.GoToAsync("AddNewTaskForComputer");
         }
 
         #endregion
