@@ -1,12 +1,13 @@
+using TaskMenager.Interfaces;
 using TaskMenager.ViewModels;
 
 namespace TaskMenager.Pages;
 
 public partial class AddNewTaskForComputer : ContentPage
 {
-	public AddNewTaskForComputer()
+	public AddNewTaskForComputer(IServiceProvider serviceProvider)
 	{
 		InitializeComponent();
-		BindingContext = new AddNewTaskForComputerViewModel();
+		BindingContext = serviceProvider.GetService<AddNewTaskForComputerViewModel>();
 	}
 }

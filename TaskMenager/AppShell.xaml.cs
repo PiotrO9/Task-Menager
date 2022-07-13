@@ -4,7 +4,7 @@ namespace TaskMenager;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
+	public AppShell(IServiceProvider serviceProvider)
 	{
 		InitializeComponent();
 		Routing.RegisterRoute(nameof(AddNewTaskForComputer), typeof(AddNewTaskForComputer));

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using TaskMenager.Engines;
@@ -12,6 +13,7 @@ namespace TaskMenager.ViewModels
     {
         #region Properties
         private IRealmEngine _iRealmEngine { get; set; }
+        private IServiceProvider _iServiceProvider { get; set; }
 
         private string _sampleText;
         public string SampleText
@@ -58,7 +60,7 @@ namespace TaskMenager.ViewModels
 
         #region Constructor
 
-        public WorkspaceComputerPageViewModel(IRealmEngine realmEngine)
+        public WorkspaceComputerPageViewModel(IRealmEngine realmEngine, IServiceProvider serviceProvider)
         {
             DetailsInformationBackButtonCommand = new Command(DetailsInformationBackButtonCommandImpl);
             SortAlphabeticallyBtnCommand = new Command(SortAlphabeticallyBtnCommandImpl);
@@ -66,6 +68,7 @@ namespace TaskMenager.ViewModels
             AddNewTaskCommand = new Command(AddNewTaskCommandImpl);
 
             _iRealmEngine = realmEngine;
+            _iServiceProvider = serviceProvider;
             Strings = AddSampleTasks.AddSampleTasksMethod();
 
             CalculateMainCollectionViewHeight();
@@ -102,7 +105,7 @@ namespace TaskMenager.ViewModels
             CalculateMainCollectionViewHeight();
         }
         public async void AddNewTaskCommandImpl()
-        {
+{
             await Shell.Current.GoToAsync("AddNewTaskForComputer");
         }
 

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TaskMenager.Engines;
+using TaskMenager.Interfaces;
 using TaskMenager.Models;
 
 namespace TaskMenager.ViewModels
@@ -13,6 +14,8 @@ namespace TaskMenager.ViewModels
     public class AddNewTaskForComputerViewModel : INotifyPropertyChanged
     {
         #region Fields
+
+        private IRealmEngine _iRealmEngine { get; set; }
 
         private bool _isTaskCyclic;
 
@@ -78,7 +81,6 @@ namespace TaskMenager.ViewModels
             set { _returnedTask = value; OnPropertyChanged(); }
         }
 
-
         #endregion
 
         #region Commands
@@ -89,8 +91,12 @@ namespace TaskMenager.ViewModels
 
         #region Constructor
 
-        public AddNewTaskForComputerViewModel()
+        public AddNewTaskForComputerViewModel(IRealmEngine realmEngine)
         {
+            _iRealmEngine = realmEngine;
+
+            SubmitNewTaskCommand = new Command(SubmitNewTaskCommandImpl);
+
             CyclicDaysRepetitive = GetCyclicDaysRepetitive.GetCyclicDaysRepetitiveMethod();
         }
 
@@ -100,7 +106,49 @@ namespace TaskMenager.ViewModels
 
         public void SubmitNewTaskCommandImpl()
         {
-            TaskToDo tmpTask = new TaskToDo();
+            if(string.IsNullOrWhiteSpace(TaskName))
+            {
+                return;
+            }
+
+            TaskToDo tmpTask = new TaskToDo(_iRealmEngine, TaskName);
+            if(!string.IsNullOrWhiteSpace(TaskDescription))
+            {
+                tmpTask.TaskDescription = TaskDescription;
+            }
+
+            if(!string.IsNullOrWhiteSpace(DurationTime))
+            {
+                if(int.TryParse(DurationTime, out int temporaryAmountOfTime))
+                {
+                    tmpTask.DurationInSeconds = temporaryAmountOfTime * 60;
+                }
+            }
+
+            tmpTask.AssignmentTime = DateTimeOffset.Now;
+
+            if(IsTaskCyclic)
+            {
+                TaskType temporaryTaskType = new TaskType(true);
+                if(string.IsNullOrEmpty(SelectedDayRepetitive))
+                {
+                    temporaryTaskType.TaskRepetetiveIntervalInDays = 1;
+                }
+                else
+                {
+                    temporaryTaskType.TaskRepetetiveIntervalInDays = int.Parse(SelectedDayRepetitive);
+                }
+                DateTime temporaryDateTime = DateTime.Today + SelectedTime;
+
+                temporaryTaskType.NextDateOfTaskAppearance = new DateTimeOffset(temporaryDateTime);
+                tmpTask.TaskType = temporaryTaskType;
+            }
+            else
+            {
+                tmpTask.TaskType = new TaskType(false);
+            }
+
+            ReturnedTask = tmpTask;
         }
 
         #endregion

@@ -56,12 +56,24 @@
                                      VerticalOptions="Center" 
                                      HorizontalOptions="Center" 
                                      Margin="10">
+                            <Label Text="Powtarzaj co" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,0,10,0"/>
                             <Picker  VerticalOptions="Center" 
                                      HorizontalOptions="Center" 
                                      ItemsSource="{Binding CyclicDaysRepetitive}"
-                                     Margin="0,0,50,0"
+                                     Margin="0,0,20,0"
                                      SelectedItem="{Binding SelectedDayRepetitive}"/>
-                            <TimePicker Time="{Binding }"/>
+                            <Label Text="Dni" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,0,20,0"/>
+                            
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label Text="Powtarzaj o godzinie" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,20,0"/>
+                            <TimePicker Time="{Binding SelectedTime}"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
@@ -87,7 +99,8 @@
                             Text="Dodaj zadanie" 
                             Margin="10"
                             VerticalOptions="Start" 
-                            HorizontalOptions="Center"/>
+                            HorizontalOptions="Center"
+                            Command="{Binding SubmitNewTaskCommand}"/>
                 </Grid>
             </Grid>
         </StackLayout>
