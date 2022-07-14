@@ -149,6 +149,11 @@ namespace TaskMenager.ViewModels
             }
 
             ReturnedTask = tmpTask;
+            if(ReturnedTask != null)
+            {
+                _iRealmEngine.AddTask(ReturnedTask);
+                Shell.Current.GoToAsync("WorkspaceComputerPage");
+            }
         }
 
         #endregion

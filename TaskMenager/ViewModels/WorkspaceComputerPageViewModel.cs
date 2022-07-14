@@ -22,12 +22,12 @@ namespace TaskMenager.ViewModels
             set { _sampleText = value; OnPropertyChanged(); }
         }
 
-        private System.Collections.Generic.List<TaskToDo> _strings;
+        private System.Collections.Generic.List<TaskToDo> _tasks;
 
-        public System.Collections.Generic.List<TaskToDo> Strings
+        public System.Collections.Generic.List<TaskToDo> Tasks
         {
-            get { return _strings; }
-            set { _strings = value; OnPropertyChanged(); }
+            get { return _tasks; }
+            set { _tasks = value; OnPropertyChanged(); }
         }
 
         private TaskToDo _selectedTask;
@@ -55,6 +55,7 @@ namespace TaskMenager.ViewModels
         public Command SortAlphabeticallyBtnCommand { get; set; }
         public Command SortByFinishedBtnCommand { get; set; }
         public Command AddNewTaskCommand { get; set; }
+        public Command RefreshCommand { get; set; }
 
         #endregion
 
@@ -66,10 +67,11 @@ namespace TaskMenager.ViewModels
             SortAlphabeticallyBtnCommand = new Command(SortAlphabeticallyBtnCommandImpl);
             SortByFinishedBtnCommand = new Command(SortByFinishedBtnCommandImpl);
             AddNewTaskCommand = new Command(AddNewTaskCommandImpl);
+            RefreshCommand = new Command(RefreshCommandImpl);
 
             _iRealmEngine = realmEngine;
             _iServiceProvider = serviceProvider;
-            Strings = AddSampleTasks.AddSampleTasksMethod();
+            Tasks = _iRealmEngine.GetCollection();
 
             CalculateMainCollectionViewHeight();
         }
@@ -83,25 +85,30 @@ namespace TaskMenager.ViewModels
             SelectedTask = null;
         }
 
+        public void RefreshCommandImpl()
+        {
+            Tasks = _iRealmEngine.GetCollection();
+        }
+
         public void CalculateMainCollectionViewHeight()
         {
-            if (Strings.Count == 0)
+            if (Tasks.Count == 0)
             {
                 HeightOfMainCollectionView = 0;
                 return;
             }
 
-            HeightOfMainCollectionView = Strings.Count * 150;
+            HeightOfMainCollectionView = Tasks.Count * 150;
         }
 
         public void SortAlphabeticallyBtnCommandImpl()
         {
-            Strings = Strings.OrderBy(x => x.TaskName).ToList();
+            Tasks = Tasks.OrderBy(x => x.TaskName).ToList();
             CalculateMainCollectionViewHeight();
         }
         public void SortByFinishedBtnCommandImpl()
         {
-            Strings = Strings.OrderBy(x => x.IsTaskFinished).Reverse().ToList();
+            Tasks = Tasks.OrderBy(x => x.IsTaskFinished).Reverse().ToList();
             CalculateMainCollectionViewHeight();
         }
         public async void AddNewTaskCommandImpl()

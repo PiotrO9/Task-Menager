@@ -33,7 +33,8 @@
 
             <Grid x:Name="HeaderGrid" Grid.Row="0" BackgroundColor="Gray">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -45,7 +46,13 @@
                        HorizontalOptions="Center" 
                        VerticalTextAlignment="Center" 
                        HorizontalTextAlignment="Center"/>
-                <Button x:Name="TaskAddBtn" Grid.Column="1" 
+                <Button x:Name="RefreshButton" 
+                        Grid.Column="1"
+                        Text="⟳"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Command="{Binding RefreshCommand}"/>
+                <Button x:Name="TaskAddBtn" Grid.Column="2" 
                         Text="+" 
                         FontSize="Body" 
                         VerticalOptions="Center" 
@@ -57,7 +64,7 @@
                 <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
                     <CollectionView x:Name="MainCollectionView" 
                                     HeightRequest="{Binding HeightOfMainCollectionView}" 
-                                    ItemsSource="{Binding Strings}"
+                                    ItemsSource="{Binding Tasks}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center">
                         <CollectionView.ItemTemplate>
