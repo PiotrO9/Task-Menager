@@ -19,4 +19,11 @@ public partial class WorkspaceComputerPage : ContentPage
         TaskToDo SelectedTask = FrameClicked.BindingContext as TaskToDo;
         _vm.SelectedTask = SelectedTask;
     }
+
+    private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        CheckBox checkBox = sender as CheckBox;
+        TaskToDo SelectedTask = checkBox.BindingContext as TaskToDo;
+        _vm.UpdateFinishState(SelectedTask);
+    }
 }

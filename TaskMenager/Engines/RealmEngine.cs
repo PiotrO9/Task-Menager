@@ -10,10 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskMenager.Interfaces;
 using TaskMenager.Models;
+using static Realms.ThreadSafeReference;
 
 namespace TaskMenager.Engines
 {
-    internal class RealmEngine : IRealmEngine
+    public class RealmEngine : IRealmEngine
     {
         private Realms.Sync.App _app { get; set; }
 
@@ -41,10 +42,28 @@ namespace TaskMenager.Engines
         {
             return GetCollection().Where(w => w.TaskID == task.TaskID).First();
         }
-        public List<TaskToDo> GetCollection()
+        public System.Collections.Generic.List<TaskToDo> GetCollection()
         {
             return _realm.All<TaskToDo>().ToList();
         }
+
+        public System.Collections.Generic.List<TaskToDo> GetCollectionForToday()
+        {
+            TaskType taskType = new TaskType(true);
+            DateTimeOffset dto = System.DateTimeOffset.Now;
+            System.Collections.Generic.List<TaskToDo> ResultCollection = GetCollection()
+                .Where(w => w.TaskType.IsTaskCyclic == taskType.IsTaskCyclic)
+                .Where(w => w.TaskType.NextDateOfTaskAppearance.Date == dto.Date)
+                .ToList();
+
+            foreach (var Task in ResultCollection)
+            {
+                Task.IsTaskFinished = false;
+            }
+
+            return ResultCollection;
+        }
+
         public void AddTask(TaskToDo task)
         {
             _realm.Write(() =>
@@ -66,9 +85,33 @@ namespace TaskMenager.Engines
                 _realm.RemoveAll();
             });
         }
+        public void SetNextAppearance(TaskToDo taskToDo)
+        {
+            _realm.Write(() =>
+            {
+                TaskToDo FoundTask = GetCollection().Where(w => w.TaskID == taskToDo.TaskID).First();
+                if (FoundTask == null)
+                {
+                    return;
+                }
+
+                if (FoundTask.IsTaskFinished == true && FoundTask.TaskType.IsTaskCyclic == true)
+                {
+                    FoundTask.TaskType.NextDateOfTaskAppearance = FoundTask.TaskType.NextDateOfTaskAppearance.AddDays(FoundTask.TaskType.TaskRepetetiveIntervalInDays);
+                    return;
+                }
+
+                if (FoundTask.IsTaskFinished == false && FoundTask.TaskType.IsTaskCyclic == true)
+                {
+                    FoundTask.TaskType.NextDateOfTaskAppearance = System.DateTimeOffset.Now;
+                    return;
+                }
+            });
+        }
+
         public int GetCollectionLength()
         {
-            return GetCollection().Count();
+            return GetCollection().Count;
         }
 
         private async Task RestartConfiguration()

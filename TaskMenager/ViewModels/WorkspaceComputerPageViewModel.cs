@@ -71,7 +71,7 @@ namespace TaskMenager.ViewModels
 
             _iRealmEngine = realmEngine;
             _iServiceProvider = serviceProvider;
-            Tasks = _iRealmEngine.GetCollection();
+            Tasks = _iRealmEngine.GetCollectionForToday();
 
             CalculateMainCollectionViewHeight();
         }
@@ -87,7 +87,13 @@ namespace TaskMenager.ViewModels
 
         public void RefreshCommandImpl()
         {
-            Tasks = _iRealmEngine.GetCollection();
+            Tasks = _iRealmEngine.GetCollectionForToday();
+            CalculateMainCollectionViewHeight();
+        }
+
+        public void UpdateFinishState(TaskToDo taskToDo)
+        {
+            _iRealmEngine.SetNextAppearance(taskToDo);
         }
 
         public void CalculateMainCollectionViewHeight()
@@ -115,7 +121,6 @@ namespace TaskMenager.ViewModels
 {
             await Shell.Current.GoToAsync("AddNewTaskForComputer");
         }
-
         #endregion
 
         #region PropertyChanged

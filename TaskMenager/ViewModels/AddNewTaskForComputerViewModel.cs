@@ -141,6 +141,7 @@ namespace TaskMenager.ViewModels
                 DateTime temporaryDateTime = DateTime.Today + SelectedTime;
 
                 temporaryTaskType.NextDateOfTaskAppearance = new DateTimeOffset(temporaryDateTime);
+                tmpTask.TaskType = new TaskType(true);
                 tmpTask.TaskType = temporaryTaskType;
             }
             else

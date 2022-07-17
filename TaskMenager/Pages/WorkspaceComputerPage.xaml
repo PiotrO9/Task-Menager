@@ -81,7 +81,8 @@
 
                                         <CheckBox Grid.Column="0" 
                                                   IsChecked="{Binding IsTaskFinished}"
-                                                  VerticalOptions="Center" />
+                                                  VerticalOptions="Center" 
+                                                  CheckedChanged="CheckBox_CheckedChanged"/>
 
                                         <Label Grid.Column="1" 
                                                Text="{Binding TaskName}" 
