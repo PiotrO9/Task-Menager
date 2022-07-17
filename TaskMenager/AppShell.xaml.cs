@@ -9,5 +9,6 @@ public partial class AppShell : Shell
 		InitializeComponent();
 		Routing.RegisterRoute(nameof(AddNewTaskForComputer), typeof(AddNewTaskForComputer));
 		Routing.RegisterRoute(nameof(WorkspaceComputerPage), typeof(WorkspaceComputerPage));
+		Routing.RegisterRoute(nameof(WorkspaceMobilePage), typeof(WorkspaceMobilePage));
 	}
 }

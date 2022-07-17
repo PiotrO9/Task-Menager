@@ -24,12 +24,16 @@ public static class MauiProgram
 		builder.Services.AddSingleton<LoginPageViewModel>();
 		builder.Services.AddSingleton<WorkspacePageViewModel>();
 		builder.Services.AddSingleton<WorkspaceComputerPageViewModel>();
+		builder.Services.AddSingleton<WorkspaceMobilePageViewModel>();
+
 		builder.Services.AddTransient<AddNewTaskForComputerViewModel>();
 
 		builder.Services.AddSingleton<WorkspacePage>();
 		builder.Services.AddSingleton<LoginPage>();
 		builder.Services.AddSingleton<WorkspaceComputerPage>();
+		builder.Services.AddSingleton<WorkspaceMobilePage>();
 		builder.Services.AddSingleton<AppShell>();
+
 		builder.Services.AddTransient<AddNewTaskForComputer>();
 
         return builder.Build();
