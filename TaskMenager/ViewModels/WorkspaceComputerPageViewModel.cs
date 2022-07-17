@@ -46,7 +46,6 @@ namespace TaskMenager.ViewModels
             set { _heightOfMainCollectionView = value; OnPropertyChanged(); }
         }
 
-
         #endregion
 
         #region Commands

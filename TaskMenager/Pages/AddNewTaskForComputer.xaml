@@ -36,7 +36,8 @@
                    Keyboard="Text"/>
         </Frame>
 
-        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+        <StackLayout Grid.Column="1" Grid.Row="1" 
+                     Orientation="Vertical">
             <Entry Text="{Binding DurationTime}"
                    Placeholder="Podaj czas na wykonanie zadania (w minutach)" 
                    HeightRequest="60" 
@@ -50,8 +51,12 @@
                 </Grid.RowDefinitions>
 
                 <Frame Grid.Row="0" IsVisible="{Binding IsTaskCyclic}">
-                    <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" Margin="10">
-                        <Label Text="Wybierz częstotliwość powtarzania się zadania" FontSize="30"/>
+                    <StackLayout Orientation="Vertical" 
+                                 VerticalOptions="Center" 
+                                 HorizontalOptions="Center" 
+                                 Margin="10">
+                        <Label Text="Wybierz częstotliwość powtarzania się zadania" 
+                               FontSize="30"/>
                         <StackLayout Orientation="Horizontal" 
                                      VerticalOptions="Center" 
                                      HorizontalOptions="Center" 
@@ -69,15 +74,20 @@
                                    VerticalOptions="Center" 
                                    HorizontalOptions="Center" 
                                    Margin="0,0,20,0"/>
-                            
+
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Label Text="Powtarzaj o godzinie" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,20,0"/>
+                        <StackLayout Orientation="Horizontal" 
+                                     VerticalOptions="Center" 
+                                     HorizontalOptions="Center">
+                            <Label Text="Powtarzaj o godzinie" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,0,20,0"/>
                             <TimePicker Time="{Binding SelectedTime}"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-                
+
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -93,7 +103,8 @@
                                Text="Zadanie cykliczne"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"/>
-                        <CheckBox Grid.Column="1" IsChecked="{Binding IsTaskCyclic}" />
+                        <CheckBox Grid.Column="1" 
+                                  IsChecked="{Binding IsTaskCyclic}" />
                     </Grid>
                     <Button Grid.Column="1" 
                             Text="Dodaj zadanie" 
@@ -104,7 +115,5 @@
                 </Grid>
             </Grid>
         </StackLayout>
-        
     </Grid>
-    
 </ContentPage>

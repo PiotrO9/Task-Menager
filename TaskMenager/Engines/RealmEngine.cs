@@ -51,17 +51,22 @@ namespace TaskMenager.Engines
         {
             TaskType taskType = new TaskType(true);
             DateTimeOffset dto = System.DateTimeOffset.Now;
-            System.Collections.Generic.List<TaskToDo> ResultCollection = GetCollection()
+            System.Collections.Generic.List<TaskToDo> ResultCollectionOfCyclicTasks = GetCollection()
                 .Where(w => w.TaskType.IsTaskCyclic == taskType.IsTaskCyclic)
                 .Where(w => w.TaskType.NextDateOfTaskAppearance.Date == dto.Date)
                 .ToList();
 
-            foreach (var Task in ResultCollection)
+            foreach (var Task in ResultCollectionOfCyclicTasks)
             {
                 Task.IsTaskFinished = false;
             }
 
-            return ResultCollection;
+            System.Collections.Generic.List<TaskToDo> ResultCollectionOfStandardTasks = GetCollection()
+                .Where(w => w.TaskType.IsTaskCyclic == false)
+                .Where(w => w.IsTaskFinished == false)
+                .ToList();
+
+            return ResultCollectionOfCyclicTasks.Concat(ResultCollectionOfStandardTasks).ToList();
         }
 
         public void AddTask(TaskToDo task)

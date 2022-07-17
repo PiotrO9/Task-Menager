@@ -31,7 +31,8 @@
                 <RowDefinition Height="85*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="HeaderGrid" Grid.Row="0" BackgroundColor="Gray">
+            <Grid x:Name="HeaderGrid" Grid.Row="0" 
+                  BackgroundColor="Gray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="*"/>
@@ -41,7 +42,10 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label x:Name="TitleLbl" Grid.Column="0" Text="Zarządzanie zadaniami" FontSize="40"
+                <Label x:Name="TitleLbl" 
+                       Grid.Column="0" 
+                       Text="Zarządzanie zadaniami" 
+                       FontSize="40"
                        VerticalOptions="Center" 
                        HorizontalOptions="Center" 
                        VerticalTextAlignment="Center" 
@@ -52,7 +56,8 @@
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                         Command="{Binding RefreshCommand}"/>
-                <Button x:Name="TaskAddBtn" Grid.Column="2" 
+                <Button x:Name="TaskAddBtn" 
+                        Grid.Column="2" 
                         Text="+" 
                         FontSize="Body" 
                         VerticalOptions="Center" 
@@ -61,7 +66,8 @@
                         Command="{Binding AddNewTaskCommand}"/>
             </Grid>
             <Grid x:Name="TasksGrid" Grid.Row="1">
-                <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+                <ScrollView HorizontalScrollBarVisibility="Never" 
+                            VerticalScrollBarVisibility="Never">
                     <CollectionView x:Name="MainCollectionView" 
                                     HeightRequest="{Binding HeightOfMainCollectionView}" 
                                     ItemsSource="{Binding Tasks}"
@@ -69,7 +75,9 @@
                                     HorizontalOptions="Center">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:TaskToDo">
-                                <Frame CornerRadius="20" HeightRequest="140" Margin="5">
+                                <Frame CornerRadius="20" 
+                                       HeightRequest="140" 
+                                       Margin="5">
                                     <Grid HeightRequest="100">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -112,9 +120,16 @@
                 <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
-                <Button Text="ABC" BackgroundColor="LightBlue" Command="{Binding SortAlphabeticallyBtnCommand}"/>
-                <Button Text="☑" BackgroundColor="LightBlue" Command="{Binding SortByFinishedBtnCommand}"/> 
+            <StackLayout Grid.Row="0" 
+                         Orientation="Horizontal" 
+                         VerticalOptions="Center" 
+                         HorizontalOptions="Center">
+                <Button Text="ABC" 
+                        BackgroundColor="LightBlue" 
+                        Command="{Binding SortAlphabeticallyBtnCommand}"/>
+                <Button Text="☑" 
+                        BackgroundColor="LightBlue" 
+                        Command="{Binding SortByFinishedBtnCommand}"/> 
             </StackLayout>
             <Frame Grid.Row="1" IsVisible="true">
                 <Grid>

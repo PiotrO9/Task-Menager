@@ -15,33 +15,12 @@ namespace TaskMenager.Converters
             if (value == null)
                 return "";
 
-            int temp;
-
-            if(int.TryParse(value.ToString(), out temp))
+            if(int.TryParse(value.ToString(), out int temp))
             {
-                if(temp == 0)
-                {
-                    return "Brak przypisanego czasu na wykonanie zadania";
-                }
-                else if(temp < 0)
-                {
-                    return "Wystąpił błąd z wczytywanie czasu na wykonanie zadania";
-                }
-                else
-                {
-                    int CalculateFromSecondsTominutes = SecondsToMinutes.SecondsToMinutesCalculation(temp);
-
-                    return CalculateFromSecondsTominutes == 0 ? 
-                        "Czas na wykonanie zadania" + Environment.NewLine + temp + " sekund" : 
-                        "Czas na wykonanie zadania" + Environment.NewLine + CalculateFromSecondsTominutes + " minut";
-                }
-            }
-            else
-            {
-                throw new InvalidDataException("Invalid data");
+                return GetComunicateToAmountOfTime.GetComunicateToAmountOfTimeMethod(temp);
             }
 
-            return value; ;
+            throw new InvalidDataException("Invalid data");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
