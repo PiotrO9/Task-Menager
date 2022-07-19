@@ -24,6 +24,8 @@ namespace TaskMenager.Engines
 
         private Realms.Realm _realm { get; set; }
 
+        public bool IsBusy { get; set; }
+
         public RealmEngine()
         {
             AsyncContext.Run(async () => await Configurate());
@@ -49,24 +51,28 @@ namespace TaskMenager.Engines
 
         public System.Collections.Generic.List<TaskToDo> GetCollectionForToday()
         {
-            TaskType taskType = new TaskType(true);
-            DateTimeOffset dto = System.DateTimeOffset.Now;
-            System.Collections.Generic.List<TaskToDo> ResultCollectionOfCyclicTasks = GetCollection()
-                .Where(w => w.TaskType.IsTaskCyclic == taskType.IsTaskCyclic)
-                .Where(w => w.TaskType.NextDateOfTaskAppearance.Date == dto.Date)
-                .ToList();
+            IsBusy = true;
 
-            foreach (var Task in ResultCollectionOfCyclicTasks)
-            {
-                Task.IsTaskFinished = false;
-            }
+                TaskType taskType = new TaskType(true);
+                DateTimeOffset dto = System.DateTimeOffset.Now;
+                System.Collections.Generic.List<TaskToDo> ResultCollectionOfCyclicTasks = GetCollection()
+                    .Where(w => w.TaskType.IsTaskCyclic == taskType.IsTaskCyclic)
+                    .Where(w => w.TaskType.NextDateOfTaskAppearance.Date == dto.Date)
+                    .ToList();
 
-            System.Collections.Generic.List<TaskToDo> ResultCollectionOfStandardTasks = GetCollection()
-                .Where(w => w.TaskType.IsTaskCyclic == false)
-                .Where(w => w.IsTaskFinished == false)
-                .ToList();
+                foreach (var Task in ResultCollectionOfCyclicTasks)
+                {
+                    Task.IsTaskFinished = false;
+                }
 
-            return ResultCollectionOfCyclicTasks.Concat(ResultCollectionOfStandardTasks).ToList();
+                System.Collections.Generic.List<TaskToDo> ResultCollectionOfStandardTasks = GetCollection()
+                    .Where(w => w.TaskType.IsTaskCyclic == false)
+                    .Where(w => w.IsTaskFinished == false)
+                    .ToList();
+
+                IsBusy = false;
+
+                return ResultCollectionOfCyclicTasks.Concat(ResultCollectionOfStandardTasks).ToList();
         }
 
         public void AddTask(TaskToDo task)
@@ -92,26 +98,30 @@ namespace TaskMenager.Engines
         }
         public void SetNextAppearance(TaskToDo taskToDo)
         {
-            _realm.Write(() =>
+            if(IsBusy) 
             {
-                TaskToDo FoundTask = GetCollection().Where(w => w.TaskID == taskToDo.TaskID).First();
-                if (FoundTask == null)
+                return; 
+            }
+                _realm.Write(() =>
                 {
-                    return;
-                }
+                    TaskToDo FoundTask = GetCollection().Where(w => w.TaskID == taskToDo.TaskID).First();
+                    if (FoundTask == null)
+                    {
+                        return;
+                    }
 
-                if (FoundTask.IsTaskFinished == true && FoundTask.TaskType.IsTaskCyclic == true)
-                {
-                    FoundTask.TaskType.NextDateOfTaskAppearance = FoundTask.TaskType.NextDateOfTaskAppearance.AddDays(FoundTask.TaskType.TaskRepetetiveIntervalInDays);
-                    return;
-                }
+                    if (FoundTask.IsTaskFinished == true && FoundTask.TaskType.IsTaskCyclic == true)
+                    {
+                        FoundTask.TaskType.NextDateOfTaskAppearance = FoundTask.TaskType.NextDateOfTaskAppearance.AddDays(FoundTask.TaskType.TaskRepetetiveIntervalInDays);
+                        return;
+                    }
 
-                if (FoundTask.IsTaskFinished == false && FoundTask.TaskType.IsTaskCyclic == true)
-                {
-                    FoundTask.TaskType.NextDateOfTaskAppearance = System.DateTimeOffset.Now;
-                    return;
-                }
-            });
+                    if (FoundTask.IsTaskFinished == false && FoundTask.TaskType.IsTaskCyclic == true)
+                    {
+                        FoundTask.TaskType.NextDateOfTaskAppearance = System.DateTimeOffset.Now;
+                        return;
+                    }
+                });
         }
 
         public int GetCollectionLength()
