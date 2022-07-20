@@ -75,6 +75,9 @@
 	  <MauiXaml Update="Pages\WorkspaceComputerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\WorkspaceMobileDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\WorkspaceMobilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

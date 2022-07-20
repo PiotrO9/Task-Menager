@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TaskMenager.ViewModels"
+             xmlns:model="clr-namespace:TaskMenager.Models"
+             x:Class="TaskMenager.Pages.WorkspaceMobileDetailPage"
+             x:DataType="vm:WorkspaceMobileDetailPageViewModel"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <Grid HeightRequest="800" VerticalOptions="Start" 
+              HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <Entry Grid.Row="0" 
+                   Placeholder="Nazwa zadania" 
+                   FontSize="30"
+                   HeightRequest="100"
+                   VerticalTextAlignment="Center" 
+                   HorizontalTextAlignment="Center"/>
+
+            <Frame Grid.Row="1">
+                <Entry Text=""
+                       Placeholder="Opis zadnaia (opcjonalny)" 
+                       HeightRequest="250"
+                       VerticalTextAlignment="Start" 
+                       Keyboard="Text"/>
+            </Frame>
+
+            <Entry Grid.Row="2"
+                   Placeholder="Podaj czas an wykonanie zadania (w minutach)"
+                   HeightRequest="50" 
+                   FontSize="15" 
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Keyboard="Numeric"/>
+
+            <Frame Grid.Row="3" IsVisible="true">
+                <StackLayout Orientation="Vertical" 
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Margin="10">
+                    <StackLayout Orientation="Horizontal" 
+                             VerticalOptions="Center" 
+                             HorizontalOptions="Center" 
+                             Margin="10">
+                        <Label Text="Powtarzaj co" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Margin="0,0,10,0"/>
+                        <Picker VerticalOptions="Center" 
+                            HorizontalOptions="Center"
+                            Margin="0,0,20,0"/>
+                        <Label Text="Dni" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,0,20,0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" 
+                                     VerticalOptions="Center" 
+                                     HorizontalOptions="Center">
+                        <Label Text="Powtarzaj o godzinie" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center" 
+                                   Margin="0,0,20,0"/>
+                        <TimePicker />
+                    </StackLayout>
+                </StackLayout>
+                
+            </Frame>
+
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <Label Text="Zadanie cykliczne" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"/>
+                    <CheckBox IsChecked="{Binding IsCyclicTaskOptionsVisible}"/>
+                </StackLayout>
+                <Button Grid.Column="1" 
+                        Text="Dodaj zadanie" 
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center"/>
+            </Grid>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

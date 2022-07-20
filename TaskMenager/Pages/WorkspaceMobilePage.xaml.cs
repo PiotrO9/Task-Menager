@@ -1,4 +1,5 @@
 using TaskMenager.Interfaces;
+using TaskMenager.Models;
 using TaskMenager.ViewModels;
 
 namespace TaskMenager.Pages;
@@ -14,6 +15,8 @@ public partial class WorkspaceMobilePage : ContentPage
 
     private void TaskTapped(object sender, EventArgs e)
     {
-
+        Frame FrameClicked = sender as Frame;
+        TaskToDo SelectedTask = FrameClicked.BindingContext as TaskToDo;
+        _vm.NavigateToDetailPage(SelectedTask);
     }
 }

@@ -56,6 +56,15 @@ namespace TaskMenager.ViewModels
             HeightOfMainCollectionView = Tasks.Count * 150;
         }
 
+        public async void NavigateToDetailPage(TaskToDo taskToDo)
+        {
+            var navigationParameter = new Dictionary<string, object>
+                {
+                    { "Task", taskToDo }
+                };
+            await Shell.Current.GoToAsync("WorkspaceMobileDetailPage", navigationParameter);
+        }
+
         #endregion
 
         #region PropertyChanged

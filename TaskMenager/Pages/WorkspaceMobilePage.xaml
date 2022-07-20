@@ -33,7 +33,7 @@
 
                                 <Label Grid.Column="1" 
                                        Text="{Binding TaskName}" 
-                                       FontSize="45"
+                                       FontSize="25"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center"
                                        VerticalTextAlignment="Center"
@@ -54,8 +54,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="AddTaskBtn" Grid.Column="0"/>
-            <Button x:Name="RefreshBtn" Grid.Column="1"/>
+            <Button x:Name="AddTaskBtn" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Text="+" />
+            <Button x:Name="RefreshBtn" Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center" Text="⟳"/>
         </Grid>
     </Grid>
 </ContentPage>
