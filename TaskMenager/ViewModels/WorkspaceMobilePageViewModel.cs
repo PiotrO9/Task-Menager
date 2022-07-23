@@ -33,6 +33,9 @@ namespace TaskMenager.ViewModels
             set { _heightOfMainCollectionView = value; OnPropertyChanged(); }
         }
 
+        public Command AddNewTaskCommand { get; set; }
+        public Command RefreshCommand { get; set; }
+
         #endregion
 
         #region Constructors
@@ -40,6 +43,11 @@ namespace TaskMenager.ViewModels
         {
             _iRealmEngine = realmEngine;
             Tasks = AddSampleTasks.AddSampleTasksMethod();
+
+            AddNewTaskCommand = new Command(AddNewTaskCommandImpl);
+            RefreshCommand = new Command(RefreshCommandImpl);
+
+            Tasks = _iRealmEngine.GetCollectionForToday();
         }
 
         #endregion
@@ -54,6 +62,16 @@ namespace TaskMenager.ViewModels
             }
 
             HeightOfMainCollectionView = Tasks.Count * 150;
+        }
+        public void RefreshCommandImpl()
+        {
+            Tasks = _iRealmEngine.GetCollectionForToday();
+            CalculateMainCollectionViewHeight();
+        }
+
+        public async void AddNewTaskCommandImpl()
+        {
+            await Shell.Current.GoToAsync("AddNewTaskForMobile");
         }
 
         public async void NavigateToDetailPage(TaskToDo taskToDo)

@@ -26,7 +26,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<WorkspaceComputerPageViewModel>();
 		builder.Services.AddSingleton<WorkspaceMobilePageViewModel>();
 
-		builder.Services.AddTransient<AddNewTaskForComputerViewModel>();
+		builder.Services.AddTransient<AddNewTaskViewModel>();
 
 		builder.Services.AddSingleton<WorkspacePage>();
 		builder.Services.AddSingleton<LoginPage>();
@@ -35,6 +35,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<AppShell>();
 
 		builder.Services.AddTransient<AddNewTaskForComputer>();
+		builder.Services.AddTransient<AddNewTaskForMobile>();
 
         return builder.Build();
 	}

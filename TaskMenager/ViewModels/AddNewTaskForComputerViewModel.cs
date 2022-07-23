@@ -11,7 +11,7 @@ using TaskMenager.Models;
 
 namespace TaskMenager.ViewModels
 {
-    public class AddNewTaskForComputerViewModel : INotifyPropertyChanged
+    public class AddNewTaskViewModel : INotifyPropertyChanged
     {
         #region Fields
 
@@ -91,7 +91,7 @@ namespace TaskMenager.ViewModels
 
         #region Constructor
 
-        public AddNewTaskForComputerViewModel(IRealmEngine realmEngine)
+        public AddNewTaskViewModel(IRealmEngine realmEngine)
         {
             _iRealmEngine = realmEngine;
 
@@ -153,7 +153,14 @@ namespace TaskMenager.ViewModels
             if(ReturnedTask != null)
             {
                 _iRealmEngine.AddTask(ReturnedTask);
-                Shell.Current.GoToAsync("WorkspaceComputerPage");
+                if(GetDeviceType.GetDeviceTypeMethod() == Enums.DeviceType.Desktop)
+                {
+                    Shell.Current.GoToAsync("WorkspaceComputerPage");
+                }
+                else if(GetDeviceType.GetDeviceTypeMethod() == Enums.DeviceType.Mobile)
+                {
+                    Shell.Current.GoToAsync("WorkspaceMobilePage");
+                }
             }
         }
 

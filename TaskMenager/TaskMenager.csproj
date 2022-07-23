@@ -69,6 +69,9 @@
 	  <MauiXaml Update="Pages\AddNewTaskForComputer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddNewTaskForMobile.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -84,10 +87,6 @@
 	  <MauiXaml Update="Pages\WorkspacePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Enums\" />
 	</ItemGroup>
 
 </Project>

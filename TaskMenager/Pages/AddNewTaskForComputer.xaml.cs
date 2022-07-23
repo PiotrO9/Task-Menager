@@ -8,6 +8,6 @@ public partial class AddNewTaskForComputer : ContentPage
 	public AddNewTaskForComputer(IServiceProvider serviceProvider)
 	{
 		InitializeComponent();
-		BindingContext = serviceProvider.GetService<AddNewTaskForComputerViewModel>();
+		BindingContext = serviceProvider.GetService<AddNewTaskViewModel>();
 	}
 }

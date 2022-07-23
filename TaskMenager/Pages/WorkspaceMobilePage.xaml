@@ -54,8 +54,18 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="AddTaskBtn" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Text="+" />
-            <Button x:Name="RefreshBtn" Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center" Text="⟳"/>
+            <Button x:Name="AddTaskBtn" 
+                    Grid.Column="0" 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    Text="+" 
+                    Command="{Binding AddNewTaskCommand}"/>
+            <Button x:Name="RefreshBtn" 
+                    Grid.Column="1"  
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    Text="⟳"
+                    Command="{Binding RefreshCommand}"/>
         </Grid>
     </Grid>
 </ContentPage>
