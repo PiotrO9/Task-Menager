@@ -3,10 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TaskMenager.ViewModels"
              xmlns:model="clr-namespace:TaskMenager.Models"
+             xmlns:con="clr-namespace:TaskMenager.Converters"
              x:Class="TaskMenager.Pages.WorkspaceMobileDetailPage"
              x:DataType="vm:WorkspaceMobileDetailPageViewModel"
-             Shell.NavBarIsVisible="False">
-    <ScrollView>
-       
-    </ScrollView>
+             Shell.NavBarIsVisible="True">
+    <ContentPage.Resources>
+        <con:AssignmentTimeConverter x:Key="AssignmentTimeConevrter"/>
+        <con:DurationInSecondsTimeConverter x:Key="DurationInSecondsTimeConverter"/>
+    </ContentPage.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" 
+               Text="{Binding CurrentTask.TaskName}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" 
+               VerticalTextAlignment="Center" 
+               HorizontalTextAlignment="Center" 
+               FontAttributes="Bold" 
+               FontSize="25"/>
+        
+        <Label Text="{Binding CurrentTask.TaskDescription}" 
+               Grid.Row="1"
+                VerticalOptions="Center"
+               HorizontalOptions="Center"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"/>
+        <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="AssignmentTimeLbl" 
+                   Grid.Column="0" Text="{Binding CurrentTask.AssignmentTime, Converter={StaticResource AssignmentTimeConevrter}}"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="22"/>
+            
+            <Label x:Name="DurationTimeLbl" 
+                   Grid.Column="1" 
+                   Text="{Binding CurrentTask.DurationInSeconds, Converter={StaticResource DurationInSecondsTimeConverter}}"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="20"/>
+        </Grid>
+    </Grid>
 </ContentPage>

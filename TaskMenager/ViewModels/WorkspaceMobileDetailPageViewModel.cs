@@ -33,15 +33,15 @@ namespace TaskMenager.ViewModels
 
         }
 
-        #region PropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             CurrentTask = query["Task"] as TaskToDo;
             OnPropertyChanged("CurrentTask");
         }
+
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
